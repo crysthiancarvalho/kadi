@@ -1,26 +1,6 @@
 fileFormatVersion: 2
 guid: b6ebfd2058520e64cad15ee5f6edb4ca
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: andarilho_walk_0
-    21300002: andarilho_walk_1
-    21300004: andarilho_walk_2
-    21300006: andarilho_walk_3
-    21300008: andarilho_walk_4
-    21300010: andarilho_walk_5
-    21300012: andarilho_walk_6
-    21300014: andarilho_walk_7
-    21300016: andarilho_walk_8
-    21300018: andarilho_walk_9
-    21300020: andarilho_walk_10
-    21300022: andarilho_walk_11
-    21300024: andarilho_walk_12
-    21300026: andarilho_walk_13
-    21300028: andarilho_walk_14
-    21300030: andarilho_walk_15
-    21300032: andarilho_walk_16
-    21300034: andarilho_walk_17
-    21300036: andarilho_walk_18
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -70,7 +50,7 @@ TextureImporter:
         width: 136
         height: 252
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: andarilho_walk_1
       rect:
@@ -80,7 +60,7 @@ TextureImporter:
         width: 136
         height: 252
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: andarilho_walk_2
       rect:
@@ -90,7 +70,7 @@ TextureImporter:
         width: 133
         height: 252
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: andarilho_walk_3
       rect:
@@ -100,7 +80,7 @@ TextureImporter:
         width: 137
         height: 254
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: andarilho_walk_4
       rect:
@@ -110,7 +90,7 @@ TextureImporter:
         width: 133
         height: 255
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: andarilho_walk_5
       rect:
@@ -120,7 +100,7 @@ TextureImporter:
         width: 136
         height: 255
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: andarilho_walk_6
       rect:
@@ -130,7 +110,7 @@ TextureImporter:
         width: 139
         height: 255
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: andarilho_walk_7
       rect:
@@ -140,7 +120,7 @@ TextureImporter:
         width: 146
         height: 255
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: andarilho_walk_8
       rect:
@@ -150,7 +130,7 @@ TextureImporter:
         width: 152
         height: 252
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: andarilho_walk_9
       rect:
@@ -160,7 +140,7 @@ TextureImporter:
         width: 156
         height: 252
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: andarilho_walk_10
       rect:
@@ -170,7 +150,7 @@ TextureImporter:
         width: 149
         height: 255
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: andarilho_walk_11
       rect:
@@ -180,7 +160,7 @@ TextureImporter:
         width: 140
         height: 255
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: andarilho_walk_12
       rect:
@@ -190,7 +170,7 @@ TextureImporter:
         width: 137
         height: 255
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: andarilho_walk_13
       rect:
@@ -200,7 +180,7 @@ TextureImporter:
         width: 133
         height: 255
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: andarilho_walk_14
       rect:
@@ -210,7 +190,7 @@ TextureImporter:
         width: 133
         height: 255
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: andarilho_walk_15
       rect:
@@ -220,7 +200,7 @@ TextureImporter:
         width: 137
         height: 254
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: andarilho_walk_16
       rect:
@@ -230,17 +210,17 @@ TextureImporter:
         width: 135
         height: 252
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: andarilho_walk_17
       rect:
         serializedVersion: 2
         x: 2991
-        y: 4
+        y: 3
         width: 133
-        height: 253
+        height: 254
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: andarilho_walk_18
       rect:
@@ -250,7 +230,7 @@ TextureImporter:
         width: 133
         height: 252
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

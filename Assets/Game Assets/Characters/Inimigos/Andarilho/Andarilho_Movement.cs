@@ -21,17 +21,20 @@ public class Andarilho_Movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(wait == true)
-		{
-			StartCoroutine(stop());
 
-		}
-		else
+		if(anim.GetBool("IsDead") == false)
 		{
+			if(wait == true)
+			{
+				StartCoroutine(stop());
 
-		move();
+			}
+			else
+			{
+
+			move();
+			}
 		}
-	
 	}
 	
 	// This code move the object a number of steps with a speed. When the number of steps equal 0 or less flip and go in the oposite direction.

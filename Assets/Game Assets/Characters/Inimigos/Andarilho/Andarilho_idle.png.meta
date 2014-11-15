@@ -1,13 +1,6 @@
 fileFormatVersion: 2
 guid: cbe5b487e79e2734abdd8f1e21972b4a
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Andarilho_idle_0
-    21300002: Andarilho_idle_1
-    21300004: Andarilho_idle_2
-    21300006: Andarilho_idle_3
-    21300008: Andarilho_idle_4
-    21300010: Andarilho_idle_5
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
