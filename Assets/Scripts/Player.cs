@@ -14,7 +14,7 @@ public class Player : MonoBehaviour {
 	public float ConsSpeed = 0f;
 	public float JumpForce = 1000f;
 
-	public bool Died = false;
+	public bool Dead = false;
 	public float maxY = 1f;
 
 
@@ -29,7 +29,7 @@ public class Player : MonoBehaviour {
 	{
 		get
 		{
-			return !(!Died || !isInsideObject);
+			return !(!Dead || !isInsideObject);
 		}
 	}
 
@@ -64,7 +64,7 @@ public class Player : MonoBehaviour {
 	}
 
 	void Run() {
-		if (Died || isInsideObject)
+		if (Dead || isInsideObject)
 			return;
 		float move = Input.GetAxis ("Horizontal");
 		animator.SetFloat ("Speed", Mathf.Abs (move));
@@ -91,7 +91,7 @@ public class Player : MonoBehaviour {
 
 	void Flip ()
 	{
-		if (Died || isInsideObject)
+		if (Dead|| isInsideObject)
 			return;
 		// Switch the way the player is labelled as facing.
 		facingRight = !facingRight;
@@ -103,6 +103,11 @@ public class Player : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
+
+		if (collision.gameObject.tag == "Enemy"){
+			animator.SetTrigger("Die");
+			Dead = true;
+		}
 		/*if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "UpperGround") {
 			Grounded = true;
 			animator.SetBool ("Grounded", false);
