@@ -7,15 +7,23 @@ public class Player : MonoBehaviour {
 	private bool facingRight = true;
 	private bool isInsideObject = false;
 
-	private bool shooting = false;
+	//private bool shooting = false;
 	private Vector2 directionShoot;
 
-	public float Speed = 3f;
+	public float maxSpeed = 10f;
 	public float ConsSpeed = 0f;
 	public float JumpForce = 1000f;
-	public bool Grounded = true;
+
 	public bool Died = false;
 	public float maxY = 1f;
+
+
+	float groundRadius = 0.21f;
+	public bool Grounded = false;
+	public LayerMask whatIsGround;
+	public Transform groundCheck;
+
+	public bool doubleJump = false;
 
 	bool CanDoAction
 	{
@@ -31,21 +39,22 @@ public class Player : MonoBehaviour {
 	}
 
 	void Update(){
-		movement ();
-	}
-
-	void movement(){
-		/*if (Input.GetAxis("Horizontal") > 0 ){
-
-		}*/
-		Run ();
 		Jump ();
 	}
 
 	// Update is called once per frame
 	void FixedUpdate () {
+
+		Grounded = Physics2D.OverlapCircle (groundCheck.position, groundRadius, whatIsGround);
+		animator.SetBool ("Ground", Grounded);
+
+		if (Grounded){
+			doubleJump = false;
+		}
+
 		//if (!Died || !isInsideObject) {
-			
+		animator.SetFloat ("vSpeed", rigidbody2D.velocity.y);
+		    Run ();
 			if(ConsSpeed > 0 && !facingRight)
 				Flip();
 			else if(ConsSpeed < 0 && facingRight)
@@ -57,23 +66,26 @@ public class Player : MonoBehaviour {
 	void Run() {
 		if (Died || isInsideObject)
 			return;
-		float speed = Input.GetAxis ("Horizontal");
-		animator.SetFloat ("Speed", Mathf.Abs (speed));
-		if (speed != 0) {
-			speed *= Speed;
-			this.rigidbody2D.velocity = new Vector2 (speed, 0f);
+		float move = Input.GetAxis ("Horizontal");
+		animator.SetFloat ("Speed", Mathf.Abs (move));
+		if (move != 0) {
+			this.rigidbody2D.velocity = new Vector2 (move * maxSpeed, rigidbody2D.velocity.y);
 		}
 		//this.rigidbody2D.velocity = new Vector2 (speed, 0f);
-		ConsSpeed = speed;
+		ConsSpeed = move;
 	}
 
 	void Jump(){
-		if (Died || isInsideObject)
-			return;
-		if (Grounded && Input.GetKeyDown(KeyCode.Space)) {
-			animator.SetTrigger("Pulo");
+
+		if ((Grounded || !doubleJump) && Input.GetKeyDown(KeyCode.Space)) {
+			animator.SetBool ("Ground", false);
 			//animator.SetBool ("Jump", true);
-			rigidbody2D.velocity = new Vector2(0f,JumpForce); // (new Vector2(0f, JumpForce));
+			rigidbody2D.AddForce (new Vector2(0,JumpForce));
+
+			if (!doubleJump && !Grounded){
+				doubleJump = true;
+			}
+			//rigidbody2D.velocity = new Vector2(0f,JumpForce); // (new Vector2(0f, JumpForce));
 		}
 	}
 
@@ -91,9 +103,9 @@ public class Player : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
-		if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "UpperGround") {
+		/*if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "UpperGround") {
 			Grounded = true;
-			//animator.SetBool ("Jump", false);
+			animator.SetBool ("Grounded", false);
 		} else if (collision.gameObject.tag == "Enemy") {
 			if(transform.position.y >= collision.gameObject.transform.position.y){
 				//collision.gameObject.GetComponent<Kama>().Die();
@@ -101,7 +113,7 @@ public class Player : MonoBehaviour {
 				animator.SetTrigger ("Die");
 				Died = true;
 			}
-		} 
+		} */
 	}
 	
 	void OnCollisionExit2D(Collision2D collision){
@@ -122,9 +134,10 @@ public class Player : MonoBehaviour {
 	}
 
 	public void OnShooted(Vector2 direction){
-		directionShoot = direction;
+		/*directionShoot = direction;
 		shooting = true;
 		Shoot ();
+*/
 	}
 
 	void Shoot(){
@@ -139,8 +152,8 @@ public class Player : MonoBehaviour {
 	}
 
 	void OnShootFinish(){
-		shooting = false;
-		rigidbody2D.gravityScale = 8f;
+		/*shooting = false;
+		rigidbody2D.gravityScale = 8f;*/
 	}
 
 	public void MarkInsideBarrel(bool inside) {
