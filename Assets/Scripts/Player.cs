@@ -4,6 +4,7 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
 	private Animator animator;
+	private AudioSource audioSource;
 	private bool facingRight = true;
 	private bool isInsideObject = false;
 
@@ -25,6 +26,10 @@ public class Player : MonoBehaviour {
 
 	public bool doubleJump = false;
 
+	private VirtualControls _controls;
+
+
+
 	bool CanDoAction
 	{
 		get
@@ -33,17 +38,44 @@ public class Player : MonoBehaviour {
 		}
 	}
 
+	void Start(){
+		_controls = new VirtualControls();
+		_controls.createDebugQuads ();
+	}
+
 	// Use this for initialization
 	void Awake () {
 		animator = GetComponent<Animator> ();
+		audioSource = GetComponent<AudioSource> ();
 	}
 
 	void Update(){
-		Jump ();
+
+		if(Application.platform == RuntimePlatform.Android)
+		{
+			if (Input.GetKey(KeyCode.Escape))
+			{
+				// Insert Code Here (I.E. Load Scene, Etc)
+				// OR Application.Quit();
+				Application.Quit();		
+				
+			}
+		}
+
+		if(animator.GetCurrentAnimatorStateInfo(0).IsName("Dead"))
+		{
+			Application.LoadLevel(Application.loadedLevel);
+		}
+
+		_controls.update ();
+		CheckJump ();
+
 	}
+
 
 	// Update is called once per frame
 	void FixedUpdate () {
+	
 
 		Grounded = Physics2D.OverlapCircle (groundCheck.position, groundRadius, whatIsGround);
 		animator.SetBool ("Ground", Grounded);
@@ -67,26 +99,50 @@ public class Player : MonoBehaviour {
 		if (Dead || isInsideObject)
 			return;
 		float move = Input.GetAxis ("Horizontal");
+
+		if (_controls.leftDown){
+			move = -1f;
+		}
+
+		if (_controls.rightDown){
+			move = 1f;
+		}
+		moveKadi(move);
+
+	}
+
+	public void moveKadi(float move){
 		animator.SetFloat ("Speed", Mathf.Abs (move));
 		if (move != 0) {
 			this.rigidbody2D.velocity = new Vector2 (move * maxSpeed, rigidbody2D.velocity.y);
 		}
 		//this.rigidbody2D.velocity = new Vector2 (speed, 0f);
 		ConsSpeed = move;
-	}
+		}
 
-	void Jump(){
 
-		if ((Grounded || !doubleJump) && Input.GetKeyDown(KeyCode.Space)) {
+	public void Jump(){
+		if ((Grounded || !doubleJump)) {
 			animator.SetBool ("Ground", false);
 			//animator.SetBool ("Jump", true);
 			rigidbody2D.AddForce (new Vector2(0,JumpForce));
-
+			audio.Play();
 			if (!doubleJump && !Grounded){
 				doubleJump = true;
 			}
 			//rigidbody2D.velocity = new Vector2(0f,JumpForce); // (new Vector2(0f, JumpForce));
 		}
+		}
+
+	void CheckJump(){
+
+		if (Input.GetKeyDown(KeyCode.Space) || _controls.attackDown) {
+			_controls.jumpDown = false;
+			Jump();
+			//rigidbody2D.velocity = new Vector2(0f,JumpForce); // (new Vector2(0f, JumpForce));
+		}
+
+
 	}
 
 	void Flip ()
@@ -108,6 +164,13 @@ public class Player : MonoBehaviour {
 			animator.SetTrigger("Die");
 			Dead = true;
 		}
+
+		if (collision.gameObject.tag == "ground_base"){
+			Application.LoadLevel(Application.loadedLevel);
+			//transform.position = Vector3(0, 0, 0);
+			//transform.position = Vector3(-4.50772f,5.952804f,0f );
+		}
+
 		/*if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "UpperGround") {
 			Grounded = true;
 			animator.SetBool ("Grounded", false);

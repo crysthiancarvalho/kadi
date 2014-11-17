@@ -28,7 +28,7 @@ public class Andarilho_Controller : MonoBehaviour {
 			if(player.GetBool("Ground") == false)
 			{
 				anim.SetBool("IsDead", true);
-				
+				audio.Play();
 				
 			}
 		}
